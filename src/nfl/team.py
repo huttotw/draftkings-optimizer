@@ -1,3 +1,9 @@
+###############################################################################
+# Team
+# A object representation of a Team of Players.
+###############################################################################
+
+
 class Team:
     def __init__(self, team):
         self.team = team
@@ -7,30 +13,28 @@ class Team:
         print "{0:10} {1:20} {2:7} {3:10}".format("Pos", "Name", "Salary",
                                                   "Points")
         for player in self.team:
-            print "{0:10} {1:20} {2:7} {3:10}".format(player["position"],
-                                                      player["name"],
-                                                      player["salary"],
-                                                      player["avg_points"])
+            player.display()
         print "Total Salary: " + str(self.get_salary())
         print "Expected Points: " + str(self.get_value())
 
     def get_salary(self):
         total_salary = 0
         for player in self.team:
-            total_salary += int(player["salary"])
+            total_salary += int(player.get_salary())
         return total_salary
 
     def get_value(self):
         total_value = 0
         for player in self.team:
-            total_value += float(player["avg_points"])
+            total_value += float(player.get_points())
         return total_value
 
     def has_positions(self):
         positions = []
         for player in self.team:
-            positions.append(player["position"])
+            positions.append(player.get_position())
 
+        # Use the list as a stack, popping positions and expecting len = 0
         try:
             positions.remove("QB")
             positions.remove("RB")

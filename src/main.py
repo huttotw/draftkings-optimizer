@@ -1,5 +1,6 @@
 import csv
 import nfl.engine
+from nfl.player import Player
 
 
 def parse_players(file_name):
@@ -7,12 +8,8 @@ def parse_players(file_name):
     with open(file_name, "rb") as csvfile:
         reader = csv.reader(csvfile, delimiter=",")
         for row in reader:
-            players.append({"position": row[0].upper(),
-                            "name": row[1].upper(),
-                            "salary": row[2].upper(),
-                            "game": row[3].upper(),
-                            "avg_points": row[4].upper(),
-                            "team_abbr": row[5].upper()})
+            player = Player(row[0], row[1], row[2], row[3], row[4], row[5])
+            players.append(player)
     return players[1:]
 
 
