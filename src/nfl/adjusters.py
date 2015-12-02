@@ -16,7 +16,7 @@ import re
 # We adjust the players average based on their opponent's defensive ranking.
 ###############################################################################
 def oprk(season, week, players):
-    defenses = nfl.stats.get(season, week, "DEF")
+    defenses = nfl.stats.get_leaders(season, week, "DEF")
     defense_team_abbrs = []
     for defense in defenses:
         defense_team_abbrs.append(defense["teamAbbr"])
