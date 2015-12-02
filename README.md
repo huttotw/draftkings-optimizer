@@ -15,12 +15,12 @@ The program consists of three main components:
 * Algorithms
 
 ### Trimmers
-Trimmers are used to shorten the input CSV file. A trimmer can be used to eliminate players that score 0 points on average, or eliminate players from a team you hate.
+Trimmers are used to shorten the input CSV file. A trimmer can be used to eliminate players that score 0 points on average, or eliminate players from a team you hate. This is an extremely important step, I have found that getting the roster to 36 players yields an acceptable run time, ~15 minutes. With even 40 players, we are looking at 273,438,880 possible teams to sort through.
 * Trimmers take in a list of players, and return a list of players.
 
 ### Adjusters
-Adjusters are used to make changes to a players estimated value. For instance, you may see that the player is playing against the best defense in the league. You may want to decrease his estimated value. These type of stats can be retrieved from the nfl.stats module, also included in the project.
-* If you want to add an external data source, do it here after adding it to nfl.stats
+Adjusters are used to make changes to a players estimated value. For instance, you may see that the player is playing against the best defense in the league. You may want to decrease his estimated value. These type of stats can be retrieved from the `nfl.stats` module, also included in the project.
+* If you want to add an external data source, do it here after adding it to `nfl.stats`
 * Adjusters take in a list of players, and return a list of players.
 
 ### Algorithms
