@@ -1,6 +1,8 @@
 # draftkings-optimizer
 
 ## To run this project locally:
+* Setup a virtual environment by running `virtualenv venv`, then `source venv/bin/activate`, for more information [virtualenv](https://virtualenv.readthedocs.org/en/latest/)
+* Install the dependencies with `pip install -r requirements.txt`
 * Download the latest CSV of Draft King player data from contest you want to compete in.
 * Place the CSV file at `data/nfl/salaries.csv`
 * Run `python src/main.py`
