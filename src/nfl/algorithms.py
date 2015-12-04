@@ -125,11 +125,15 @@ def default(players):
     teams = cartesian((qbs, rbs, rbs, wrs, wrs, wrs, tes, defs))
 
     print "Looking for best team..."
-    for team in teams:
+    numberOfTeams = len(teams)
+    for i, team in enumerate(teams):
         team = Team(team)
 
         # Decide if this team is good or not
         if team.is_valid() and team.has_positions() and team.get_salary() <= 50000:
+            progress = "\r[{0}/{1}]".format(i, numberOfTeams)
+            sys.stdout.write(progress)
+            sys.stdout.flush()
             team_value = team.get_value()
             if team_value >= max_value:
                 max_value = team_value
