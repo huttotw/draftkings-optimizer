@@ -13,6 +13,7 @@ import sys
 from nfl.team import Team
 import numpy as np
 
+
 def cartesian(arrays, out=None):
     """
     Generate a cartesian product of input arrays.
@@ -56,12 +57,13 @@ def cartesian(arrays, out=None):
         out = np.zeros([n, len(arrays)], dtype=dtype)
 
     m = n / arrays[0].size
-    out[:,0] = np.repeat(arrays[0], m)
+    out[:, 0] = np.repeat(arrays[0], m)
     if arrays[1:]:
-        cartesian(arrays[1:], out=out[0:m,1:])
+        cartesian(arrays[1:], out=out[0:m, 1:])
         for j in xrange(1, arrays[0].size):
-            out[j*m:(j+1)*m,1:] = out[0:m,1:]
+            out[j*m:(j+1)*m, 1:] = out[0:m, 1:]
     return out
+
 
 ###############################################################################
 # nCr
@@ -77,7 +79,7 @@ def nCr(n, r):
 # Default
 # We adjust the players average based on their opponent's defensive ranking.
 ###############################################################################
-def default(players):
+def brute_force(players):
     max_value = 0  # Define our max value starting point.
     numOfCombinations = nCr(len(players), 9)  # Figure out how many teams
 
@@ -88,6 +90,42 @@ def default(players):
         sys.stdout.flush()
 
         # Create the team
+        team = Team(combo)
+
+        # Decide if this team is good or not
+        if team.has_positions() and team.get_salary() <= 50000:
+            team_value = team.get_value()
+            if team_value >= max_value:
+                max_value = team_value
+                team.display()
+
+
+def default(players):
+    max_value = 0  # Define our max value starting point.
+    numOfCombinations = nCr(len(players), 9)  # Figure out how many teams
+
+    qbs = []
+    rbs = []
+    wrs = []
+    tes = []
+    defs = []
+    for player in players:
+        if player.get_position() == "QB":
+            qbs.append(player)
+        elif player.get_position() == "RB":
+            rbs.append(player)
+        elif player.get_position() == "WR":
+            wrs.append(player)
+        elif player.get_position() == "TE":
+            tes.append(player)
+        elif player.get_position() == "DST":
+            defs.append(player)
+
+    print "Calculating cartesian product..."
+    teams = cartesian((qbs, rbs, rbs, wrs, wrs, wrs, tes, defs))
+
+    print "Looking for best team..."
+    for team in teams:
         team = Team(combo)
 
         # Decide if this team is good or not
