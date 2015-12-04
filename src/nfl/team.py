@@ -42,7 +42,6 @@ class Team:
             positions.remove("WR")
             positions.remove("WR")
             positions.remove("WR")
-            positions.remove("RB")
             positions.remove("TE")
             positions.remove("DST")
         except ValueError:

@@ -128,8 +128,6 @@ def default(players):
     for team in teams:
         team = Team(team)
 
-        team.display()
-
         # Decide if this team is good or not
         if team.has_positions() and team.get_salary() <= 50000:
             team_value = team.get_value()
