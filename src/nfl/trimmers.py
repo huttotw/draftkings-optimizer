@@ -16,7 +16,7 @@
 # We don't trim any players from the input, every player from the input is
 # included and sent to the adjuster.
 ###############################################################################
-def top_n(players, n):
+def top_n_at_position(players, n):
     # First sort by points
     players.sort(key=lambda x: x.get_points(), reverse=True)
 

@@ -12,6 +12,14 @@ import re
 
 
 ###############################################################################
+# Default
+# Purely based on Draft Kings rankings.
+###############################################################################
+def default(season, week, players):
+    return players
+
+
+###############################################################################
 # OPRK
 # We adjust the players average based on their opponent's defensive ranking.
 ###############################################################################

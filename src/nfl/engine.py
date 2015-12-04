@@ -25,11 +25,11 @@ def start(season, week, players):
 
     # You can create new adjuster functions inside of nfl/adjusters
     print "Adjusting players..."
-    players = nfl.adjusters.oprk_by_position(season, week, players)
+    players = nfl.adjusters.default(season, week, players)
 
     # You can create new trimmer functions inside of nfl/trimmers
     print "Trimming players..."
-    players = nfl.trimmers.top_n(players, 4)
+    players = nfl.trimmers.top_n_at_position(players, 6)
 
     # You can create new algorithms inside nfl/algorithms and use them here
     print "Running algorithm..."
