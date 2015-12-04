@@ -126,7 +126,7 @@ def default(players):
             defs.append(player)
 
     print "Calculating cartesian product..."
-    teams = cartesian((qbs, rbs, rbs, wrs, wrs, flex, tes, defs))
+    teams = cartesian((qbs, rbs, rbs, wrs, wrs, wrs, tes,flex, defs))
 
     print "Looking for best team..."
     for team in teams:
