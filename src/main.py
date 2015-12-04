@@ -7,10 +7,11 @@ def parse_players(file_name):
     players = []
     with open(file_name, "rb") as csvfile:
         reader = csv.reader(csvfile, delimiter=",")
+        headers = next(reader)
         for row in reader:
             player = Player(row[0], row[1], row[2], row[3], row[4], row[5])
             players.append(player)
-    return players[1:]
+    return players
 
 
 print "Starting optimization..."

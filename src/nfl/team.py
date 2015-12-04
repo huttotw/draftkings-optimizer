@@ -10,7 +10,7 @@ class Team:
 
     def display(self):
         print "\n"
-        print "{0:10} {1:20} {2:7} {3:10}".format("Pos", "Name", "Salary",
+        print "{0:10} {1:20} {2:10} {3:10}".format("Pos", "Name", "Salary",
                                                   "Points")
         for player in self.team:
             player.display()
