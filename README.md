@@ -31,4 +31,4 @@ Algorithms are used to compare one team to another. For the sake of space, we ha
 * Algorithms take in a list of `players` and outputs the best team each time it finds one better than the last.
 
 ## Contributing
-Contributions are more than welcome, please submit a pull request with any new ways of finding teams, new trimmers, adjusters or algorithms.
+Contributions are more than welcome, please submit a pull request with any new ways of finding teams, new trimmers, adjusters or algorithms. 
