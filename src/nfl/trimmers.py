@@ -16,12 +16,30 @@
 # We don't trim any players from the input, every player from the input is
 # included and sent to the adjuster.
 ###############################################################################
-def top_10(players):
+def top_n(players, n):
     # First sort by points
     players.sort(key=lambda x: x.get_points(), reverse=True)
-    # Then sort by position
-    players.sort(key=lambda x: x.get_position(), reverse=True)
 
-    # To be continued....
+    qbs = []
+    rbs = []
+    wrs = []
+    tes = []
+    dsts = []
 
-    return players
+    for player in players:
+        if player.get_position() == "QB" and len(qbs) < n:
+            qbs.append(player)
+
+        if player.get_position() == "RB" and len(rbs) < n:
+            rbs.append(player)
+
+        if player.get_position() == "WR" and len(wrs) < n:
+            wrs.append(player)
+
+        if player.get_position() == "TE" and len(tes) < n:
+            tes.append(player)
+
+        if player.get_position() == "DST" and len(dsts) < n:
+            dsts.append(player)
+
+    return qbs + rbs + wrs + tes + dsts

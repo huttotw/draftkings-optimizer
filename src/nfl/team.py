@@ -10,8 +10,8 @@ class Team:
 
     def display(self):
         print "\n"
-        print "{0:10} {1:20} {2:10} {3:10}".format("Pos", "Name", "Salary",
-                                                  "Points")
+        print "{0:>5} {1:5} {2:25} {3:>10} {4:>15}".format("ID", "Pos", "Name",
+                                                        "Salary", "Points")
         for player in self.team:
             player.display()
         print "Total Salary: " + str(self.get_salary())

@@ -126,7 +126,9 @@ def default(players):
 
     print "Looking for best team..."
     for team in teams:
-        team = Team(combo)
+        team = Team(team)
+
+        team.display()
 
         # Decide if this team is good or not
         if team.has_positions() and team.get_salary() <= 50000:

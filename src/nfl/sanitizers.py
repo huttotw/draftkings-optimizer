@@ -7,5 +7,5 @@
 
 def default(players):
     for i, player in enumerate(players):
-        player.set_index(i)
+        player.set_id(i)
     return players
