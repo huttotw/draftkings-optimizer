@@ -9,6 +9,7 @@
 
 import nfl.adjusters
 import nfl.algorithms
+import nfl.sanitizers
 import nfl.trimmers
 
 
@@ -18,12 +19,17 @@ import nfl.trimmers
 # to select our team.
 ###############################################################################
 def start(season, week, players):
-    print "Trimming players..."
-    players = nfl.trimmers.default(players)
+    # You can create new santiziing functions inside of nfl/trimmers
+    print "Sanitizing players..."
+    players = nfl.sanitizers.default(players)
 
     # You can create new adjuster functions inside of nfl/adjusters
     print "Adjusting players..."
     players = nfl.adjusters.oprk_by_position(season, week, players)
+
+    # You can create new trimmer functions inside of nfl/trimmers
+    print "Trimming players..."
+    players = nfl.trimmers.top_10(players)
 
     # You can create new algorithms inside nfl/algorithms and use them here
     print "Running algorithm..."

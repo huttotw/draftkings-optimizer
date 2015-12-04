@@ -13,9 +13,11 @@ class Player:
         self.game = game.upper()
         self.points = float(points)
         self.team = team.upper()
+        self.index = None
 
     def display(self):
-        print "{0:10} {1:20} {2:10} {3:10}".format(self.position,
+        print "{0:5d} {1:5} {2:25} {3:10d} {4:15f}".format(self.index,
+                                                  self.position,
                                                   self.name,
                                                   self.salary,
                                                   self.points)
@@ -52,3 +54,9 @@ class Player:
 
     def get_team(self):
         return self.team
+
+    def get_index():
+        return self.index
+
+    def set_index(self, index):
+        self.index = index

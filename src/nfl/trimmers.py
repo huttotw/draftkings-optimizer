@@ -16,5 +16,12 @@
 # We don't trim any players from the input, every player from the input is
 # included and sent to the adjuster.
 ###############################################################################
-def default(players):
+def top_10(players):
+    # First sort by points
+    players.sort(key=lambda x: x.get_points(), reverse=True)
+    # Then sort by position
+    players.sort(key=lambda x: x.get_position(), reverse=True)
+
+    # To be continued....
+
     return players
