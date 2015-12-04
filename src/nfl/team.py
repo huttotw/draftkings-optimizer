@@ -11,7 +11,7 @@ class Team:
     def display(self):
         print "\n"
         print "{0:>5} {1:5} {2:25} {3:>10} {4:>15}".format("ID", "Pos", "Name",
-                                                        "Salary", "Points")
+                                                           "Salary", "Points")
         for player in self.team:
             player.display()
         print "Total Salary: " + str(self.get_salary())
@@ -31,7 +31,6 @@ class Team:
 
     def is_valid(self):
         return len(self.team) is len(set(self.team))
-
 
     def has_positions(self):
         positions = []
