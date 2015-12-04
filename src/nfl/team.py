@@ -29,6 +29,10 @@ class Team:
             total_value += float(player.get_points())
         return total_value
 
+    def is_valid(self):
+        return len(self.team) is len(set(self.team))
+
+
     def has_positions(self):
         positions = []
         for player in self.team:

@@ -129,7 +129,7 @@ def default(players):
         team = Team(team)
 
         # Decide if this team is good or not
-        if team.has_positions() and team.get_salary() <= 50000:
+        if team.is_valid() and team.has_positions() and team.get_salary() <= 50000:
             team_value = team.get_value()
             if team_value >= max_value:
                 max_value = team_value
