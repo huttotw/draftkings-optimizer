@@ -107,6 +107,7 @@ def default(players):
     qbs = []
     rbs = []
     wrs = []
+    flex = []
     tes = []
     defs = []
     for player in players:
@@ -114,15 +115,18 @@ def default(players):
             qbs.append(player)
         elif player.get_position() == "RB":
             rbs.append(player)
+            flex.append(player)
         elif player.get_position() == "WR":
             wrs.append(player)
+            flex.append(player)
         elif player.get_position() == "TE":
             tes.append(player)
+            flex.append(player)
         elif player.get_position() == "DST":
             defs.append(player)
 
     print "Calculating cartesian product..."
-    teams = cartesian((qbs, rbs, rbs, wrs, wrs, wrs, tes, defs))
+    teams = cartesian((qbs, rbs, rbs, wrs, wrs, flex, tes, defs))
 
     print "Looking for best team..."
     for team in teams:
