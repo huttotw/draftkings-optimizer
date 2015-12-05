@@ -126,7 +126,7 @@ def default(players):
             defs.append(player)
 
     print "Calculating cartesian product..."
-    teams = cartesian((qbs, rbs, rbs, wrs, wrs, tes, flex, defs))
+    teams = cartesian((qbs, rbs, rbs, wrs, wrs, wrs, tes, flex, defs))
 
     print "Looking for best team..."
     numberOfTeams = len(teams)
@@ -134,7 +134,7 @@ def default(players):
         team = Team(team)
 
         # Decide if this team is good or not
-        if team.is_valid() and team.has_positions() and team.get_salary() <= 50000:
+        if team.is_valid() and team.get_salary() <= 50000:
             progress = "\r[{0}/{1}]".format(i, numberOfTeams)
             sys.stdout.write(progress)
             sys.stdout.flush()
