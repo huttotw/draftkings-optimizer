@@ -1,6 +1,8 @@
 import csv
+import getopt
 import nfl.engine
 from nfl.player import Player
+import sys
 
 
 def parse_players(file_name):
@@ -14,14 +16,34 @@ def parse_players(file_name):
     return players
 
 
-print "Starting optimization..."
+def main(argv):
+    season = ""
+    week = ""
+    try:
+        opts, args = getopt.getopt(argv, "helps:w:", ["season=", "week="])
+    except getopt.GetoptError:
+        print "main.py -season <season> -week <week>"
+        sys.exit(2)
 
-print "Reading players..."
-players = parse_players("data/nfl/salaries.csv")
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            print "main.py -season <season> -week <week>"
+            sys.exit()
+        elif opt in ("-s", "--season"):
+            season = arg
+        elif opt in ("-w", "--week"):
+            week = arg
 
-print "Starting Engine..."
-season = 2015
-week = 13
-nfl.engine.start(season, week, players)
+    print "Starting optimization..."
 
-print "FINISHED!"
+    print "Reading players..."
+    players = parse_players("data/nfl/salaries.csv")
+
+    print "Starting Engine..."
+    season = 2015
+    week = 13
+    nfl.engine.start(season, week, players)
+
+    print "FINISHED!"
+
+main(sys.argv[1:])
