@@ -10,8 +10,8 @@ class Team:
 
     def display(self):
         print "\n"
-        print "{0:10} {1:20} {2:10} {3:10}".format("Pos", "Name", "Salary",
-                                                  "Points")
+        print "{0:>5} {1:5} {2:25} {3:>10} {4:>15}".format("ID", "Pos", "Name",
+                                                           "Salary", "Points")
         for player in self.team:
             player.display()
         print "Total Salary: " + str(self.get_salary())
@@ -29,6 +29,9 @@ class Team:
             total_value += float(player.get_points())
         return total_value
 
+    def is_valid(self):
+        return len(self.team) is len(set(self.team))
+
     def has_positions(self):
         positions = []
         for player in self.team:
@@ -42,7 +45,6 @@ class Team:
             positions.remove("WR")
             positions.remove("WR")
             positions.remove("WR")
-            positions.remove("RB")
             positions.remove("TE")
             positions.remove("DST")
         except ValueError:

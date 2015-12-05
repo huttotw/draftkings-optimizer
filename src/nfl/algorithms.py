@@ -11,6 +11,58 @@ import itertools
 import math
 import sys
 from nfl.team import Team
+import numpy as np
+
+
+def cartesian(arrays, out=None):
+    """
+    Generate a cartesian product of input arrays.
+
+    Parameters
+    ----------
+    arrays : list of array-like
+        1-D arrays to form the cartesian product of.
+    out : ndarray
+        Array to place the cartesian product in.
+
+    Returns
+    -------
+    out : ndarray
+        2-D array of shape (M, len(arrays)) containing cartesian products
+        formed of input arrays.
+
+    Examples
+    --------
+    >>> cartesian(([1, 2, 3], [4, 5], [6, 7]))
+    array([[1, 4, 6],
+           [1, 4, 7],
+           [1, 5, 6],
+           [1, 5, 7],
+           [2, 4, 6],
+           [2, 4, 7],
+           [2, 5, 6],
+           [2, 5, 7],
+           [3, 4, 6],
+           [3, 4, 7],
+           [3, 5, 6],
+           [3, 5, 7]])
+
+    """
+
+    arrays = [np.asarray(x) for x in arrays]
+    dtype = arrays[0].dtype
+
+    n = np.prod([x.size for x in arrays])
+    if out is None:
+        out = np.zeros([n, len(arrays)], dtype=dtype)
+
+    m = n / arrays[0].size
+    out[:, 0] = np.repeat(arrays[0], m)
+    if arrays[1:]:
+        cartesian(arrays[1:], out=out[0:m, 1:])
+        for j in xrange(1, arrays[0].size):
+            out[j*m:(j+1)*m, 1:] = out[0:m, 1:]
+    return out
 
 
 ###############################################################################
@@ -27,7 +79,7 @@ def nCr(n, r):
 # Default
 # We adjust the players average based on their opponent's defensive ranking.
 ###############################################################################
-def default(players):
+def brute_force(players):
     max_value = 0  # Define our max value starting point.
     numOfCombinations = nCr(len(players), 9)  # Figure out how many teams
 
@@ -42,6 +94,50 @@ def default(players):
 
         # Decide if this team is good or not
         if team.has_positions() and team.get_salary() <= 50000:
+            team_value = team.get_value()
+            if team_value >= max_value:
+                max_value = team_value
+                team.display()
+
+
+def default(players):
+    max_value = 0  # Define our max value starting point.
+    numOfCombinations = nCr(len(players), 9)  # Figure out how many teams
+
+    qbs = []
+    rbs = []
+    wrs = []
+    flex = []
+    tes = []
+    defs = []
+    for player in players:
+        if player.get_position() == "QB":
+            qbs.append(player)
+        elif player.get_position() == "RB":
+            rbs.append(player)
+            flex.append(player)
+        elif player.get_position() == "WR":
+            wrs.append(player)
+            flex.append(player)
+        elif player.get_position() == "TE":
+            tes.append(player)
+            flex.append(player)
+        elif player.get_position() == "DST":
+            defs.append(player)
+
+    print "Calculating cartesian product..."
+    teams = cartesian((qbs, rbs, rbs, wrs, wrs, wrs, tes, flex, defs))
+
+    print "Looking for best team..."
+    numberOfTeams = len(teams)
+    for i, team in enumerate(teams):
+        team = Team(team)
+
+        # Decide if this team is good or not
+        if team.is_valid() and team.get_salary() <= 50000:
+            progress = "\r[{0}/{1}]".format(i, numberOfTeams)
+            sys.stdout.write(progress)
+            sys.stdout.flush()
             team_value = team.get_value()
             if team_value >= max_value:
                 max_value = team_value
