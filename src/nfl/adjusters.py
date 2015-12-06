@@ -68,21 +68,21 @@ def oprk_by_position(season, week, players):
                     player_value = player_value / interceptions
 
                     # increase values for things that will help qb
-                    player_value = player_value * points_allowed
+                    player_value = player_value * points_allowed / 2
 
                 if player.get_position() == "RB":
                     # decrease values for things that will hurt rb
                     player_value = player_value / fumble_recoveries
 
                     # increase values for things that will help rb
-                    player_value = player_value * points_allowed
+                    player_value = player_value * points_allowed / 2
 
                 if player.get_position() == "WR" or player.get_position() == "TE":
                     # decrease values for things that will hurt rb
                     player_value = player_value / fumble_recoveries
 
                     # increase values for things that will help rb
-                    player_value = player_value * points_allowed
+                    player_value = player_value * points_allowed / 2
 
                 if player.get_position() == "DEF":
                     # We can't tell anything from the opposing defense
