@@ -29,7 +29,7 @@ def start(season, week, players):
 
     # You can create new trimmer functions inside of nfl/trimmers
     print "Trimming players..."
-    players = nfl.trimmers.top_n_at_position(players, 6)
+    players = nfl.trimmers.top_n_at_position(players, 7)
 
     # You can create new algorithms inside nfl/algorithms and use them here
     print "Running algorithm..."

@@ -14,7 +14,7 @@ import json
 
 
 def get_leaders(season, week, position):
-    week = week - 1  # we need last weeks stats
+    week = int(week) - 1  # we need last weeks stats
     results = []
     url = "http://api.fantasy.nfl.com/v1/players/scoringleaders?"
     url += "season=" + str(season)
