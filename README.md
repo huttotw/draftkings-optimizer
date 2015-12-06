@@ -5,7 +5,7 @@
 * Install the dependencies with `pip install -r requirements.txt`
 * Download the latest CSV of Draft King player data from contest you want to compete in.
 * Place the CSV file at `data/nfl/salaries.csv`
-* Run `python src/main.py --season 2015 --week 13`
+* Run `python src/main.py --season <season> --week <week> --input <input_file>`
 
 _The program will take several minutes to complete even with a relatively small roster size._
 For more information on this type of problem, see [Knapsack Problem](https://en.wikipedia.org/wiki/Knapsack_problem)
