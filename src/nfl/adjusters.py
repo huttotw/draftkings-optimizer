@@ -8,7 +8,6 @@
 ###############################################################################
 
 import nfl.stats
-import re
 
 
 ###############################################################################
@@ -48,7 +47,7 @@ def oprk_by_position(season, week, players):
 
     for player in players:
         for defense in defenses:
-            if player.get_team() == defense["teamAbbr"]:
+            if player.get_opponent() == defense["teamAbbr"]:
 
                 # compile all the stats
                 sacks = float(defense["stats"]["Sack"]) if defense["stats"]["Sack"] is not False else 1.0

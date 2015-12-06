@@ -1,3 +1,6 @@
+import re
+
+
 ###############################################################################
 # Player
 # A object representation of an NFL player.
@@ -28,7 +31,7 @@ class Player:
         team2 = teams.group(2)  # get the second team
 
         # get the opponent
-        if team1 == player.get_team():
+        if team1 == self.team:
             opponent = team2
         else:
             opponent = team1
